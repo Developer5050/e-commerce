@@ -1,0 +1,155 @@
+/* General Styling */
+.heading {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 30px;
+  }
+  
+  .main-content {
+    font-size: 25px;
+    padding-bottom: 5px;
+    text-align: center;
+  }
+  
+  .main-content h1::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 2px;
+    background-color: #F28123;
+    margin: 10px auto;
+  }
+  
+  /* Grid Layout for Product Details */
+  .product-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 50px;
+  }
+  
+  /* Image Styling */
+  .product-image {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  /* Product Content Styling */
+  .product-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+  }
+  
+  .product-content h2 {
+    font-size: 1.6rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .product-content p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 5px;
+    line-height: 1.5;
+  }
+  
+  .product-content h3 {
+    font-size: 1.3rem;
+    color: #000;
+    margin-bottom: 10px;
+  }
+  
+  /* Button Styling */
+  .product-content button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .product-content button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Back Link Styling */
+  .product-content a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .product-content a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive Design for Tablets */
+  @media screen and (max-width: 768px) {
+    .product-details {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  
+    .product-content {
+      text-align: center;
+    }
+  
+    .product-image {
+      max-width: 80%;
+      margin: auto;
+    }
+  
+    .product-content h2 {
+      font-size: 1.5rem;
+    }
+  
+    .product-content p {
+      font-size: 1rem;
+    }
+  
+    .product-content h3 {
+      font-size: 1.3rem;
+    }
+  
+    .product-content button {
+      font-size: 14px;
+    }
+  }
+  
+  /* Responsive Design for Mobile */
+  @media screen and (max-width: 480px) {
+    .product-image {
+      max-width: 100%;
+    }
+  
+    .product-content h2 {
+      font-size: 1.3rem;
+    }
+  
+    .product-content p {
+      font-size: 0.9rem;
+    }
+  
+    .product-content h3 {
+      font-size: 1.2rem;
+    }
+  
+    .product-content button {
+      font-size: 13px;
+      padding: 8px 15px;
+    }
+  }
+  
+
