@@ -1,0 +1,154 @@
+.heading{
+    font-size: 20px;
+}
+.billing-page {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.billing-container {
+    flex: 1;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    min-width: 300px;
+}
+
+.cart-summary {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: right;
+    min-width: 300px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.billing-form .form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.form-row .form-group {
+    flex: 1;
+    min-width: 150px;
+}
+
+.proceed-btn {
+    width: 100%;
+    max-width: 200px;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.proceed-btn:hover {
+    background: #218838;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.cart-table th,
+.cart-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 1024px) {
+    .billing-page {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .billing-container,
+    .cart-summary {
+        width: 90%; /* Ensure proper width */
+        max-width: 600px; /* Prevent excessive width */
+        margin: auto; /* Center alignment */
+    }
+}
+
+@media (max-width: 768px) {
+    .billing-container,
+    .cart-summary {
+        width: 95%;
+        max-width: 500px;
+    }
+
+    .cart-table th,
+    .cart-table td {
+        font-size: 14px;
+    }
+
+    .proceed-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 425px) {
+    .billing-container,
+    .cart-summary {
+        width: 100%;
+        max-width: 380px;
+        padding: 10px;
+    }
+
+    .proceed-btn {
+        width: 100%;
+        font-size: 16px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 320px) {
+    .billing-container,
+    .cart-summary {
+        width: 100%;
+        max-width: 300px;
+        padding: 8px;
+    }
+
+    .proceed-btn {
+        width: 100%;
+        font-size: 14px;
+        padding: 10px;
+    }
+}

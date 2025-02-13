@@ -13,7 +13,7 @@ const CustomSlider = ({ children }) => {
         setTimeout(() => {
           slideNext();
           setSlideDone(true);
-        }, 5000)
+        }, 7000)
       );
     }
   }, [slideDone]);

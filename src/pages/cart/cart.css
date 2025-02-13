@@ -24,6 +24,7 @@
 .tableWrapper {
     overflow-x: auto;
     margin-top: 50px;
+    text-align: right;
 }
 
 .cartTable {
@@ -89,6 +90,13 @@
 
 .removeBtn:hover {
     background-color: #c82333;
+}
+
+.billingBtn{
+    margin-top: 30px;
+    float: right;
+    padding: 10px 30px;
+    font-size: 14px;
 }
 
 /* Responsive Styles */

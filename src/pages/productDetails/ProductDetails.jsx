@@ -3,15 +3,16 @@ import { useParams, Link } from "react-router-dom";
 import "./productDetails.css";
 import { add } from "../../features/cart/cartSlice";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux"; // add
 
 const ProductDetails = () => {
   const { id } = useParams();
   // console.log(id, "deeedededde");
 
-  // const navigate = useNavigate();
+  const cart = useSelector((state) => state.cart || { items: [] }); // ✅ Ensure state.cart exists // add
+  // console.log(cart); // add
 
   const dispatch = useDispatch();
-
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -46,12 +47,15 @@ const ProductDetails = () => {
     fetchProduct();
   }, [id]);
 
-  // const handleBtn = () =>{
-  //   navigate("/cart");
-  // }
-
-  const handleAdd = () => {
-    dispatch(add(product));
+  // new line
+  const handleAddCart = () => {
+    dispatch(
+      add({
+        productId: product.id,
+        quantity: 1,
+        product,
+      })
+    );
   };
 
   if (loading) {
@@ -76,8 +80,8 @@ const ProductDetails = () => {
           <p>{product.description}</p>
           <h3>Price: ${product.price}</h3>
           <div>
-            {/* <button onClick={handleBtn}>Add to Cart</button> */}
-            <button onClick={() => handleAdd(product)}>Add to Cart</button>
+            {/* new line */}
+            <button onClick={handleAddCart}>Add to Cart</button>
           </div>
           <br />
           <Link to="/">← Back to Products</Link>

@@ -29,7 +29,7 @@ const Navbar = () => {
           <ul className="navListItem">
             <li>
               <NavLink to="/" className="navList">
-                Home
+                Product
               </NavLink>
               <NavLink to="/cart" className="navList">
                 Cart
