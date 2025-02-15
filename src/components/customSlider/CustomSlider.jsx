@@ -1,91 +1,59 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "./customSlider.css";
 
 const CustomSlider = ({ children }) => {
-  const [activeIndex, setAvticeIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [slideDone, setSlideDone] = useState(true);
-  const [timeID, setTimeID] = useState(null);
+
+  const slideNext = useCallback(() => {
+    setActiveIndex((val) => (val >= children.length - 1 ? 0 : val + 1));
+  }, [children.length]);
+
+  const slidePrev = () => {
+    setActiveIndex((val) => (val === 0 ? children.length - 1 : val - 1));
+  };
 
   useEffect(() => {
     if (slideDone) {
       setSlideDone(false);
-      setTimeID(
-        setTimeout(() => {
-          slideNext();
-          setSlideDone(true);
-        }, 7000)
-      );
+      const timer = setTimeout(() => {
+        slideNext();
+        setSlideDone(true);
+      }, 7000);
+
+      return () => clearTimeout(timer);
     }
-  }, [slideDone]);
-
-  const slideNext = () => {
-    setAvticeIndex((val) => {
-      if (val >= children.length - 1) {
-        return 0;
-      } else {
-        return val + 1;
-      }
-    });
-  };
-
-  const slidePrev = () => {
-    setAvticeIndex((val) => {
-      if (val >= 0) {
-        return children.length - 1;
-      } else {
-        return val - 1;
-      }
-    });
-  };
+  }, [slideDone, slideNext]);
 
   return (
     <div className="container__slider">
-      {children.map((item, index) => {
-        return (
-          <div
-            className={"slider__item slider__item-active-" + (activeIndex + 1)}
-            key={index}
-          >
-            {item}
-          </div>
-        );
-      })}
+      {children.map((item, index) => (
+        <div
+          className={`slider__item slider__item-active-${activeIndex + 1}`}
+          key={index}
+        >
+          {item}
+        </div>
+      ))}
 
       <div className="container__slider__links">
-        {children.map((item, index) => {
-          return (
-            <button
-              key={index}
-              className={
-                activeIndex === index
-                  ? "container__slider__links-small container__slider__links-small-active"
-                  : "container__slider__links-small"
-              }
-              onClick={(e) => {
-                e.preventDefault();
-                setAvticeIndex(index);
-              }}
-            ></button>
-          );
-        })}
+        {children.map((_, index) => (
+          <button
+            key={index}
+            className={`container__slider__links-small ${
+              activeIndex === index
+                ? "container__slider__links-small-active"
+                : ""
+            }`}
+            onClick={() => setActiveIndex(index)}
+          ></button>
+        ))}
       </div>
 
-      <button
-        className="slider__btn-next"
-        onClick={(e) => {
-          e.preventDefault();
-          slideNext();
-        }}
-      >
+      <button className="slider__btn-next" onClick={slideNext}>
         {">"}
       </button>
-      <button
-        className="slider__btn-prev"
-        onClick={(e) => {
-          e.preventDefault();
-          slidePrev();
-        }}
-      >
+      <button className="slider__btn-prev" onClick={slidePrev}>
         {"<"}
       </button>
     </div>

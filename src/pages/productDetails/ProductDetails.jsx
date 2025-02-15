@@ -3,17 +3,11 @@ import { useParams, Link } from "react-router-dom";
 import "./productDetails.css";
 import { add } from "../../features/cart/cartSlice";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux"; // add
 
 const ProductDetails = () => {
   const { id } = useParams();
-  // console.log(id, "deeedededde");
-
-  const cart = useSelector((state) => state.cart || { items: [] }); // ✅ Ensure state.cart exists // add
-  // console.log(cart); // add
-
   const dispatch = useDispatch();
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -29,7 +23,6 @@ const ProductDetails = () => {
           throw new Error(`HTTP error! Status: ${res.status}`);
         }
 
-        // Check if response body is empty before parsing JSON
         const text = await res.text();
         if (!text) {
           throw new Error("Empty response from server");
@@ -47,7 +40,6 @@ const ProductDetails = () => {
     fetchProduct();
   }, [id]);
 
-  // new line
   const handleAddCart = () => {
     dispatch(
       add({
@@ -80,7 +72,6 @@ const ProductDetails = () => {
           <p>{product.description}</p>
           <h3>Price: ${product.price}</h3>
           <div>
-            {/* new line */}
             <button onClick={handleAddCart}>Add to Cart</button>
           </div>
           <br />
@@ -92,3 +83,4 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
+

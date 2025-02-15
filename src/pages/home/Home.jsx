@@ -1,47 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./home.css";
 import CustomSlider from "../../components/customSlider/CustomSlider";
 import Image from "../../data/Image";
 import { useNavigate } from "react-router-dom";
 import { fetchProducts } from "../../features/cart/productSlice";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { STATUSES } from "../../features/cart/productSlice";
 
-const Home = ({id}) => {
-  // const [products, setProducts] = useState([]);
-
+const Home = ({ id }) => {
   const dispatch = useDispatch();
-
-  const {data: products , status} = useSelector(state => state.product);
-
+  const { data: products, status } = useSelector((state) => state.product);
   const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchProducts());
-    // const fetchProducts = async () => {
-    //   const response = await fetch("https://fakestoreapi.com/products");
-    //   const data = await response.json();
-    //   console.log(data);
-    //   setProducts(data);
-    // };
+  }, [dispatch]); // ✅ Added `dispatch` to the dependency array
 
-    // fetchProducts();
-  }, []);
-
-  const hanldeProduct = (id) => {
+  const handleProduct = (id) => {
     navigate(`/product/${id}`);
   };
 
-  if(status === STATUSES.LOADING){
-    return <h1>Loading....</h1>
+  if (status === STATUSES.LOADING) {
+    return <h1>Loading....</h1>;
   }
 
   return (
     <div>
       <CustomSlider>
-        {Image.map((image, index) => {
-          return <img key={index} src={image.imgURL} alt={image.imgAlt} />;
-        })}
+        {Image.map((image, index) => (
+          <img key={index} src={image.imgURL} alt={image.imgAlt} />
+        ))}
       </CustomSlider>
 
       <div className="productWrapper">
@@ -57,7 +45,7 @@ const Home = ({id}) => {
               <img src={product.image} alt="" className="productImage" />
               <h4>{product.title}</h4>
               <h5>{product.price}</h5>
-              <button className="btn" onClick={() => hanldeProduct(product.id)}>
+              <button className="btn" onClick={() => handleProduct(product.id)}>
                 View Product
               </button>
             </div>
@@ -69,3 +57,4 @@ const Home = ({id}) => {
 };
 
 export default Home;
+

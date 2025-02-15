@@ -118,17 +118,6 @@
   }
   
 
-  /* @media screen and (max-width: 425px) {
-    .container__slider {
-        height: 45vh; 
-    }
-
-    .slider__item img {
-        height: 100%;
-        object-fit: cover;
-    }
-} */
-
 @media screen and (max-width: 425px) {
     .container__slider {
         height: 45vh;
